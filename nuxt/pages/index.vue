@@ -1,72 +1,44 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        nuxt
-      </h1>
-      <h2 class="subtitle">
-        Balaeda informal testing sandbox
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+  <main>
+    <div><button type="button" name="button" @click="() => fetchable.fetch()">Fetch</button></div>
+
+    <div><span>fetching: {{ fetchable.fetching }}</span></div>
+
+    <div><span>response:</span></div>
+    <pre><code>{{ response }}</code></pre>
+
+    <div><span>responseJson:</span></div>
+    <pre><code>{{ responseJson }}</code></pre>
+  </main>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import { ref, computed } from '@vue/composition-api'
+import useFetchable from '~/assets/js/composition/useFetchable'
 
 export default {
-  components: {
-    Logo
-  }
+  setup() {
+    const count = ref(0),
+          fetchable = useFetchable('https://httpbin.org/get', {
+            method: 'get',
+          }),
+          response = computed(() => {
+
+            return JSON.stringify(fetchable.response, null, 2)
+          }),
+          responseJson = computed(() => {
+            console.log('responseJson:')
+            console.log(fetchable.responseJson)
+            return JSON.stringify(fetchable.responseJson, null, 2)
+          })
+
+
+    console.log(fetchable.responseJson)
+    return {
+      fetchable,
+      response,
+      responseJson
+    }
+  },
 }
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
