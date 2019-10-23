@@ -1,4 +1,4 @@
-import { reactive, computed } from '@vue/composition-api'
+import { reactive } from '@vue/composition-api'
 import { Fetchable } from '@baleada/logic'
 
 export default function useFetchable (state, options) {
