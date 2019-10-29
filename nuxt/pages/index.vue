@@ -1,6 +1,8 @@
 <template>
   <main>
-    button()
+    <button @click="handleClick">
+      do stuff
+    </button>
   </main>
 </template>
 
@@ -10,16 +12,30 @@ import useListenable from '~/assets/js/composition/useListenable'
 
 export default {
   setup() {
-    let listenable
+    let listenable = {}
     onMounted(() => {
-      listenable = useListenable('click')
-      listenable.listen(event => console.log(event))
+      listenable = useListenable('tap')
+      listenable.listen((event) => {
+        console.log(listenable.eventMetadata)
+      })
     })
 
+    function handleClick() {
+
+    }
 
     return {
-      // listenable
+      listenable,
+      handleClick
     }
   },
 }
 </script>
+
+<style media="screen">
+  body {
+    background-color: #333;
+    color: #fafafa;
+    padding: 100px;
+  }
+</style>
