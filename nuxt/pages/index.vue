@@ -1,50 +1,62 @@
 <template>
   <main>
     <button @click="doStuff">
-      do stuff
+      doStuff
     </button>
-    <button @click="doOtherStuff">
-      do other stuff
+    <button @click="doStuff2">
+      doStuff2
     </button>
-    <button @click="() => instance.login('baleada-example@alexvipond.dev', 'password')">
-      login
-    </button>
-    <pre><code>{{ responsesJson }}</code></pre>
-    <pre><code>{{ user }}</code></pre>
+    <div><span>executions: </span></div>
+    <pre><code>{{ executions }}</code></pre>
+    <div><span>time: </span></div>
+    <pre><code>{{ time }}</code></pre>
+    <div><span>timeElapsed: </span></div>
+    <pre><code>{{ timeElapsed }}</code></pre>
+    <div><span>timeRemaining: </span></div>
+    <pre><code>{{ timeRemaining }}</code></pre>
   </main>
 </template>
 
 <script>
 import { ref, computed, onMounted } from '@vue/composition-api'
-import useIdentifiableGoTrue from '~/assets/js/composition/useIdentifiableGoTrue'
+import useDelayable from '~/assets/js/composition/useDelayable'
 
 export default {
   setup() {
-    const userData = ref(null)
-    const instance = useIdentifiableGoTrue({
-            onGetUserData: data => (userData.value = data),
-            APIUrl: 'https://baleada.netlify.com/.netlify/identity',
-            setCookie: true,
+    const value1 = ref(''),
+          value2 = ref(''),
+          instance = useDelayable((param1, param2) => {
+            value1.value = param1
+            value2.value = param2
           }),
-          responsesJson = computed(() => JSON.stringify(instance.responses, null, 2)),
-          user = computed(() => JSON.stringify(instance.user, null, 2))
-
+          timeElapsed = computed(() => {
+            return JSON.stringify({
+              total: Math.round(instance.timeElapsed.total),
+              sinceLastExecution: Math.round(instance.timeElapsed.sinceLastExecution)
+            }, null, 2)
+          }),
+          timeRemaining = computed(() => Math.round(instance.timeRemaining)),
+          executions = computed(() => instance.executions),
+          time = computed(() => JSON.stringify(instance.time, null, 2))
 
     function doStuff () {
-      console.log(instance.userData)
-      console.log(instance)
-      // instance.login('baleada-example@alexvipond.dev', 'password')
+      instance.interval(2000, ['butt', 'face'])
     }
-    function doOtherStuff () {
-      console.log(userData.value)
+
+    function doStuff2 () {
+      instance.stop()
     }
 
     return {
+      value1,
+      value2,
       instance,
-      responsesJson,
-      user,
+      time,
+      executions,
+      timeElapsed,
+      timeRemaining,
       doStuff,
-      doOtherStuff,
+      doStuff2,
     }
   },
 }
