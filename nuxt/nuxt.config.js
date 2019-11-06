@@ -1,3 +1,4 @@
+import { prosePostRender } from '@baleada/prose-loader/lib/stubs'
 
 export default {
   mode: 'spa',
@@ -28,7 +29,9 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/vue-composition-api'
+    '~/plugins/vue-composition-api',
+    '~/plugins/prose.js',
+    '~/plugins/runtime.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -47,7 +50,25 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
-    }
-  }
+    extend: config => {
+      const prose = {
+              loader: '@baleada/prose-loader',
+              options: {
+                postRender: rendered => `<template lang="html">${prosePostRender(rendered)}</template>\n`
+              }
+            }
+
+      config.module.rules.push({
+        test: /\.md$/,
+        oneOf: [
+          {
+            use: [
+              'vue-loader',
+              prose,
+            ]
+          }
+        ]
+      })
+    },
+  },
 }

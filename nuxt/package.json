@@ -11,6 +11,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@baleada/prose-loader": "file:baleada-prose-loader-0.0.3.tgz",
     "@vue/composition-api": "^0.3.2",
     "nuxt": "^2.0.0"
   },
