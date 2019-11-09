@@ -16,38 +16,80 @@
 <script>
 import { reactive, ref, isRef, toRefs, computed, readonly, watch, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted, onErrorCaptured, onRenderTracked, onRenderTriggered, provide, inject } from '@vue/composition-api'
 
-import useListenable from '~/assets/js/composition/useListenable'
+// import useListenable from '~/assets/js/composition/useListenable'
+import { Listenable } from '@baleada/logic'
+
+import is from '@baleada/logic/lib/util/is'
+
+function toProvisions(instance) {
+  const publicProperties = {
+    prototype: Object.getOwnPropertyNames(Object.getPrototypeOf(instance)).slice(1), // don't include constructor
+    instance: Object.getOwnPropertyNames(instance)
+  }
+
+  return publicProperties.instance.concat(publicProperties.prototype)
+    .reduce(
+      (provisions, property) => ({
+        ...provisions,
+        [property]: is.function(instance[property]) ? instance[property].bind(instance) : instance[property]
+      }),
+      {}
+    )
+}
+
 
 export default {
   setup() {
     const observed = ref(null)
 
-    let instance = {}
-    onMounted(() => {
-      instance = useListenable('resize', {
-        element: observed.value
-      })
-    })
-    onBeforeUnmount(() => {
-      instance.stop()
-    })
+    function resolveElements (possibleRef) {
+      return isRef(possibleRef) ? possibleRef.value : possibleRef
+    }
 
-    watch('instance.activeListeners', () => {
-      console.log(instance.activeListeners)
+    function resolveOptionsElements (options) {
+      ['element', 'elements'].forEach(property => options.hasOwnProperty(property) && (options[property] = resolveElements(options[property])))
+      return options
+    }
+
+    function useListenable(state, options) {
+      let reactiveInstance = reactive({})
+      onMounted(() => {
+        state = resolveElements(state)
+        options = resolveOptionsElements(options)
+        const instance = new Listenable(state, options),
+              provisions = toProvisions(instance)
+
+        for (let property in provisions) {
+          reactiveInstance[property] = provisions[property]
+        }
+
+        console.log(reactiveInstance)
+      })
+      onBeforeUnmount(() => {
+        reactiveInstance.stop()
+      })
+
+      return reactiveInstance
+    }
+
+    let reactiveInstance = useListenable('resize', { element: observed })
+
+    watch('reactiveInstance.activeListeners', () => {
+      console.log(reactiveInstance.activeListeners)
     })
 
     const eventMetadata = computed(() => {
-      return JSON.stringify(instance.eventMetadata, null, 2)
+      return JSON.stringify(reactiveInstance.eventMetadata, null, 2)
     })
 
     function listen () {
-      instance.listen((event) => {
+      reactiveInstance.listen((event) => {
         console.log(event)
       })
     }
 
     function stop () {
-      instance.stop()
+      reactiveInstance.stop()
     }
 
     function mutate () {
@@ -55,7 +97,7 @@ export default {
     }
 
     return {
-      instance,
+      reactiveInstance,
       eventMetadata,
       listen,
       stop,
