@@ -1,5 +1,5 @@
 <template lang="html">
-<ProseThreeColumnLayout />
+<ProseLayoutThreeColumn :manifest="[]" />
 </template>
 
 <script>

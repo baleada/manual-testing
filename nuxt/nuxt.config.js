@@ -1,4 +1,7 @@
-import { prosePostRender } from '@baleada/prose-loader/lib/stubs'
+import getToTemplate from '@baleada/markdown-to-template/lib/prose'
+import MarkdownItSpaLinks from '@baleada/markdown-it-spa-links'
+import refractor from 'refractor'
+import rehype from 'rehype'
 
 export default {
   mode: 'spa',
@@ -31,7 +34,7 @@ export default {
   plugins: [
     '~/plugins/vue-composition-api',
     '~/plugins/prose.js',
-    '~/plugins/runtime.js'
+    // '~/plugins/runtime.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -51,10 +54,25 @@ export default {
     ** You can extend webpack config here
     */
     extend: config => {
-      const prose = {
-              loader: '@baleada/prose-loader',
+      const toTemplate = getToTemplate('vue', {
+              html: true,
+              linkify: true,
+              highlight: (code, lang) => {
+                const children = refractor.highlight(code, lang),
+                      html = rehype()
+                        .stringify({ type: 'root', children })
+                        .toString()
+
+                return html
+              },
+              plugins: [
+                [MarkdownItSpaLinks, 'nuxt']
+              ],
+            }),
+            prose = {
+              loader: '@baleada/loader/lib/webpack',
               options: {
-                postRender: rendered => `<template lang="html">${prosePostRender(rendered)}</template>\n`
+                transform: (source, loaderContext) => toTemplate(source, loaderContext.resourcePath)
               }
             }
 

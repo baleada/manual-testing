@@ -1,7 +1,7 @@
 {
   "name": "nuxt",
   "version": "1.0.0",
-  "description": "Balaeda informal testing sandbox",
+  "description": "Baleada informal testing sandbox",
   "author": "AlexVipond",
   "private": true,
   "scripts": {
@@ -11,9 +11,11 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@baleada/prose-loader": "file:baleada-prose-loader-0.0.3.tgz",
+    "@baleada/loader": "file:baleada-loader-0.0.0.tgz",
     "@vue/composition-api": "^0.3.2",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "refractor": "^2.10.0",
+    "rehype": "^9.0.1"
   },
   "devDependencies": {}
 }

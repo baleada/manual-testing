@@ -7,7 +7,7 @@
 <script>
 import article from '~/assets/md/prose.md'
 export default {
-  layout: 'ProseThreeColumnLayout',
+  layout: 'ProseLayoutThreeColumn',
   setup () {
     return {
       article

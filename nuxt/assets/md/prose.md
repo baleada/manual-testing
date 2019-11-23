@@ -9,12 +9,3 @@ Testing hot reload
 Testing **bold** and *em*
 
 ## Generic heading
-
-
-<<< aside
-my aside
-<<<
-
-"""
-big ProseBlockquote
-"""
