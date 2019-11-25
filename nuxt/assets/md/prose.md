@@ -29,11 +29,13 @@ codeblock
 details
 :::
 
-::: ariaLabel="example grid"
-| Prose | Grid |
-| --- | --- |
-| 0, 0 | 0, 1 |
-| 1, 0 | 1, 1 |
+::: ariaLabel="example grid" canFilterByQuery
+| Baleada | Prose | Grid | Example |
+| --- | --- | --- | --- |
+| hello even 0 | hello even 0 | hello even 0 | hello even 0 |
+| hello odd 1 | hello odd 1 | hello odd 1 | hello odd 1 |
+| hello even 2 | hello even 2 | hello even 2 | hello even 2 |
+| hello odd 3 | hello odd 3 | hello odd 3 | hello odd 3 |
 :::
 
 <!-- :::
