@@ -29,7 +29,14 @@ codeblock
 details
 :::
 
-::: ariaLabel="example grid" canFilterByQuery
+::: canFilterByQuery canChangeFilterIsCaseSensitive
+- hello even 0
+- hello odd 1
+- hello even 2
+- hello odd 3
+:::
+
+::: ariaLabel="example grid" canFilterByQuery canChangeFilterIsCaseSensitive
 | Baleada | Prose | Grid | Example |
 | --- | --- | --- | --- |
 | hello even 0 | hello even 0 | hello even 0 | hello even 0 |
