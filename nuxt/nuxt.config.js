@@ -1,4 +1,4 @@
-import getToTemplate from '@baleada/markdown-to-template/lib/prose'
+import getTransform from '@baleada/markdown-to-prose'
 import MarkdownItSpaLinks from '@baleada/markdown-it-spa-links'
 import refractor from 'refractor'
 import rehype from 'rehype'
@@ -54,7 +54,7 @@ export default {
     ** You can extend webpack config here
     */
     extend: config => {
-      const toTemplate = getToTemplate('vue', {
+      const transform = getTransform('vue', {
               html: true,
               linkify: true,
               highlight: (code, lang) => {
@@ -72,7 +72,7 @@ export default {
             prose = {
               loader: '@baleada/loader/lib/webpack',
               options: {
-                transform: (source, loaderContext) => toTemplate(source, loaderContext.resourcePath)
+                transform: (source, { resourcePath }) => transform(source, resourcePath)
               }
             }
 

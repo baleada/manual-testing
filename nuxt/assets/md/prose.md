@@ -2,6 +2,8 @@
 title: My Title
 ---
 
+[nuxt link](/)
+
 <!-- Testing initial heading and markdown capabilities
 
 Testing hot reload
