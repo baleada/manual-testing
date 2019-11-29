@@ -1,6 +1,8 @@
 <template lang="html">
 <ProseArticle>
-  <div class="">{{ messages.butt }}</div>
+  <template v-slot:before="{ frontMatter: { title } }">
+    <ProseHeading :level="1">{{ title }}</ProseHeading>
+  </template>
   <component :is="article" />
 </ProseArticle>
 </template>
@@ -11,13 +13,8 @@ import article from '~/assets/md/prose.md'
 export default {
   layout: 'prose',
   setup () {
-    const messages = ref({
-      butt: 'cheek',
-    })
-
     return {
       article,
-      messages,
     }
   }
 }
