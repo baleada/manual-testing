@@ -1,4 +1,5 @@
 import getTransform from '@baleada/markdown-to-prose'
+import propsInterfaces from '@baleada/prose/vue/propsInterfaces'
 import MarkdownItSpaLinks from '@baleada/markdown-it-spa-links'
 import refractor from 'refractor'
 import rehype from 'rehype'
@@ -34,7 +35,7 @@ export default {
   plugins: [
     '~/plugins/vue-composition-api',
     '~/plugins/prose.js',
-    // '~/plugins/runtime.js'
+    '~/plugins/runtime.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -54,21 +55,31 @@ export default {
     ** You can extend webpack config here
     */
     extend: config => {
-      const transform = getTransform('vue', {
-              html: true,
-              linkify: true,
-              highlight: (code, lang) => {
-                const children = refractor.highlight(code, lang),
-                      html = rehype()
-                        .stringify({ type: 'root', children })
-                        .toString()
+      function escapeRawVueExpression (str) {
+        return str.replace(/({{|}})/g, '<span>$1</span>')
+      }
 
-                return html
-              },
-              plugins: [
-                [MarkdownItSpaLinks, 'nuxt']
-              ],
-            }),
+      const transform = getTransform({ templateType: 'vue', propsInterfaces }, {
+        markdownIt: {
+          html: true,
+          linkify: true,
+          highlight: (code, lang) => {
+            try {
+              const children = refractor.highlight(code, lang),
+                    html = rehype()
+                      .stringify({ type: 'root', children })
+                      .toString()
+              return escapeRawVueExpression(html)
+            } catch (error) {
+              console.warn(error)
+              return ''
+            }
+          },
+          plugins: [
+            [MarkdownItSpaLinks, 'nuxt']
+          ],
+        },
+      }),
             prose = {
               loader: '@baleada/loader/lib/webpack',
               options: {

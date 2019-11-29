@@ -2,8 +2,13 @@
 title: My Title
 ---
 
-[nuxt link](/)
-
+:::
+```js
+export default function butt() {
+  console.log('face')
+}
+```
+:::
 <!-- Testing initial heading and markdown capabilities
 
 Testing hot reload
@@ -31,14 +36,14 @@ codeblock
 details
 :::
 
-::: canFilterByQuery canChangeFilterIsCaseSensitive
+::: canFilterByQuery canChangeFilterCaseSensitivity
 - hello even 0
 - hello odd 1
 - hello even 2
 - hello odd 3
 :::
 
-::: ariaLabel="example grid" canFilterByQuery canChangeFilterIsCaseSensitive
+::: ariaLabel="example grid" canFilterByQuery canChangeFilterCaseSensitivity
 | Baleada | Prose | Grid | Example |
 | --- | --- | --- | --- |
 | hello even 0 | hello even 0 | hello even 0 | hello even 0 |
