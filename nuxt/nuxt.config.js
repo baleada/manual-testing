@@ -35,7 +35,7 @@ export default {
   plugins: [
     '~/plugins/vue-composition-api',
     '~/plugins/prose.js',
-    '~/plugins/runtime.js'
+    '~/plugins/runtime.js',
   ],
   /*
   ** Nuxt.js dev-modules

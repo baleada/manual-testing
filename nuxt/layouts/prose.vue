@@ -1,7 +1,6 @@
 <template lang="html">
 <ProseLayout
   :fullPathInjectKey="fullPathInjectKey"
-  :messagesInjectKey="messagesInjectKey"
 >
   <ThreeColumn />
 </ProseLayout>

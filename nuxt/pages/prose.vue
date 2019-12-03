@@ -1,8 +1,5 @@
 <template lang="html">
 <ProseArticle>
-  <template v-slot:before="{ frontMatter: { title } }">
-    <ProseHeading :level="1">{{ title }}</ProseHeading>
-  </template>
   <component :is="article" />
 </ProseArticle>
 </template>
