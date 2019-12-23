@@ -2,10 +2,9 @@
   <main>
     <section ref="el" class="one">
       <button type="button" name="button" @click="listen">listen</button>
+      <button type="button" name="button" @click="listen2">listen2</button>
       <button type="button" name="button" @click="stop">stop</button>
-      <button type="button" name="button" @click="mutate">mutate</button>
-      <div><span>eventMetadata:</span></div>
-      <pre><code>{{ eventMetadata }}</code></pre>
+      <button type="button" name="button" @click="stop2">stop2</button>
     </section>
     <section ref="el2" class="two">
 
@@ -24,16 +23,18 @@ export default {
     const el = ref(null),
           el2 = ref(null)
 
-    const listenable = useListenable('resize')
-
-    const eventMetadata = computed(() => {
-      return JSON.stringify(listenable.value.eventMetadata, null, 2)
-    })
+    const listenable = useListenable('click')
 
     function listen () {
-      listenable.value.listen((event) => {
-        console.log(event)
-      }, { target: el2.value, observe: { characterData: true, attributeOldValue: true, attributes: true, characterData: true, characterDataOldValue: true, childList: true, subtree: true } })
+      listenable.value.listen(
+        (event) => {
+          console.log(event)
+        },
+        {
+          target: el.value,
+          // whitelist: ['button']
+        }
+      )
     }
     function listen2 () {
       listenable.value.listen((event) => {
@@ -42,23 +43,18 @@ export default {
     }
 
     function stop () {
-      listenable.value.stop({ target: el2.value })
+      listenable.value.stop({ target: el.value })
     }
     function stop2 () {
-
-    }
-    function mutate () {
-      el2.value.textContent = 'I\'ve been mutated'
+      listenable.value.stop({ target: el2.value })
     }
 
 
     return {
-      eventMetadata,
       listen,
       listen2,
       stop,
       stop2,
-      mutate,
       el,
       el2
     }
@@ -68,12 +64,12 @@ export default {
 
 <style media="screen" lang="css">
   section.one {
-    height: 150vh;
+    height: 50vh;
     background-color: #333;
   }
 
   section.two {
-    height: 150vh;
+    height: 50vh;
     background-color: #666;
   }
 </style>

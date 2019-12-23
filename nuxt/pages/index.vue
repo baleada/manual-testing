@@ -1,5 +1,6 @@
 <template>
   <main>
+    <SlotThing><span>hello</span></SlotThing>
     <button @click="doStuff">
       doStuff
     </button>
@@ -21,7 +22,12 @@
 import { ref, computed, onMounted } from '@vue/composition-api'
 import useDelayable from '~/assets/js/composition/useDelayable'
 
+import SlotThing from '~/components/SlotThing'
+
 export default {
+  components: {
+    SlotThing
+  },
   setup() {
     const value1 = ref(''),
           value2 = ref(''),

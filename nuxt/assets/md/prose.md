@@ -7,11 +7,17 @@ title: My Title
 
 Testing hot reload
 
-Testing **bold** and *em*
+Testing **bold** and *em* -->
 
+::: canTweet tweetHashtags=[blockquote, wow] tweetVia="alpalvipond" tweetUrl="https://baleada.netlify.com"
+> Hello
+:::
 
-## Generic heading
+:::
+## `G`eneric heading
+:::
 
+<!--
 ::: type="info"
 aside
 :::
@@ -26,11 +32,11 @@ codeblock
 ```
 ::: -->
 
-::: summary="summary"
+<!-- ::: summary="summary"
 details
-:::
+::: -->
 
-::: canFilterByQuery canChangeFilterCaseSensitivity
+<!-- ::: canFilterByQuery canChangeFilterCaseSensitivity
 - hello even 0
 - hello odd 1
 - hello even 2
@@ -44,7 +50,7 @@ details
 | hello odd 1 | hello odd 1 | hello odd 1 | hello odd 1 |
 | hello even 2 | hello even 2 | hello even 2 | hello even 2 |
 | hello odd 3 | hello odd 3 | hello odd 3 | hello odd 3 |
-:::
+::: -->
 
 <!-- :::
 # Heading

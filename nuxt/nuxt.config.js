@@ -76,9 +76,10 @@ export default {
             }
           },
           plugins: [
-            [MarkdownItSpaLinks, 'nuxt']
+            [MarkdownItSpaLinks, { spa: 'nuxt' }]
           ],
         },
+        before: ({ frontMatter: { title } }) => `<ProseHeading :level="1">${title}</ProseHeading>\n`,
       }),
             prose = {
               loader: '@baleada/loader/lib/webpack',
