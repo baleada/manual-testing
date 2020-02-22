@@ -28,6 +28,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/css/tailwind.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -54,6 +55,11 @@ export default {
     /*
     ** You can extend webpack config here
     */
+    postcss: {
+      plugins: {
+        tailwindcss: './tailwind.config.js',
+      }
+    },
     extend: config => {
       function escapeRawVueExpression (str) {
         return str.replace(/({{|}})/g, '<span>$1</span>')

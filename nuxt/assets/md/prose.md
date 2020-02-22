@@ -9,7 +9,7 @@ Testing hot reload
 
 Testing **bold** and *em* -->
 
-::: canTweet tweetHashtags=[blockquote, wow] tweetVia="alpalvipond" tweetUrl="https://baleada.netlify.com"
+::: tweetHashtags=[blockquote, wow] tweetVia="alpalvipond" tweetUrl="https://baleada.netlify.com"
 > Hello
 :::
 
@@ -17,31 +17,36 @@ Testing **bold** and *em* -->
 ## `G`eneric heading
 :::
 
-<!--
+
 ::: type="info"
 aside
 :::
+
 
 :::
 > blockquote
 :::
 
+
+
 :::
 ```js
 codeblock
 ```
-::: -->
+:::
 
-<!-- ::: summary="summary"
+::: summary="summary's"
 details
-::: -->
+:::
 
-<!-- ::: canFilterByQuery canChangeFilterCaseSensitivity
+::: canFilterByQuery canChangeFilterCaseSensitivity
 - hello even 0
 - hello odd 1
 - hello even 2
 - hello odd 3
 :::
+
+
 
 ::: ariaLabel="example grid" canFilterByQuery canChangeFilterCaseSensitivity
 | Baleada | Prose | Grid | Example |
@@ -50,20 +55,23 @@ details
 | hello odd 1 | hello odd 1 | hello odd 1 | hello odd 1 |
 | hello even 2 | hello even 2 | hello even 2 | hello even 2 |
 | hello odd 3 | hello odd 3 | hello odd 3 | hello odd 3 |
-::: -->
+:::
 
 <!-- :::
 # Heading
 :::
+-->
 
+<!-- 
 :::
 1. list item
-:::
+::: -->
 
 :::
 section
 :::
 
+<!--
 > blockquote
 
 ```js

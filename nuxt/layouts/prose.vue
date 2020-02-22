@@ -1,13 +1,14 @@
 <template lang="html">
 <ProseLayout
   :fullPathInjectKey="fullPathInjectKey"
+  :defaultPropsInjectKey="defaultPropsInjectKey"
 >
   <ThreeColumn />
 </ProseLayout>
 </template>
 
 <script>
-import { computed, provide } from '@vue/composition-api'
+import { ref, computed, provide } from '@vue/composition-api'
 
 import useRouter from '~/assets/js/useRouter.js'
 
@@ -29,15 +30,50 @@ export default {
               }
             }
           }),
-          messagesInjectKey = Symbol('messages')
+          messagesInjectKey = Symbol('messages'),
+          defaultPropsInjectKey = Symbol('defaultProps'),
+          defaultProps = {
+            article: {
+              classes: 'butt',
+            },
+            aside: {
+              classes: 'butt',
+            },
+            blockquote: {
+              classes: 'butt',
+            },
+            codeblock: {
+              classes: 'butt',
+            },
+            details: {
+              classes: 'butt',
+            },
+            grid: {
+              classes: 'butt',
+            },
+            heading: {
+              classes: 'butt',
+            },
+            list: {
+              classes: 'butt',
+            },
+            media: {
+              classes: 'butt',
+            },
+            section: {
+              classes: 'butt',
+            },
+          }
 
 
     provide(fullPathInjectKey, fullPath)
     provide(messagesInjectKey, messages)
+    provide(defaultPropsInjectKey, defaultProps)
 
     return {
       fullPathInjectKey,
       messagesInjectKey,
+      defaultPropsInjectKey,
     }
   },
 }

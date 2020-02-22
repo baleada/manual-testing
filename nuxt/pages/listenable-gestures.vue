@@ -16,8 +16,11 @@
 import { reactive, ref, isRef, toRefs, computed, readonly, watch, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted, onErrorCaptured, onRenderTracked, onRenderTriggered, provide, inject } from '@vue/composition-api'
 
 import { useListenable } from '@baleada/composition/vue'
-import gestures from '@baleada/listenable-gestures'
+import { dragdrop } from '@baleada/listenable-gestures'
 
+import { swipe } from '@baleada/listenable-gestures/factories'
+
+console.log(swipe())
 
 export default {
   setup() {
@@ -25,8 +28,7 @@ export default {
           el = ref(null),
           el2 = ref(null)
 
-    const dragdrop = gestures.dragdrop,
-          listenable = useListenable('dragdrop', { gesture: dragdrop })
+    const listenable = useListenable('dragdrop', { gesture: dragdrop })
 
     function listen () {
       listenable.value.listen(
