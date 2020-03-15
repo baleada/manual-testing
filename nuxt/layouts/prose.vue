@@ -50,9 +50,11 @@ export default {
             },
             grid: {
               classes: 'butt',
+              canFilterByQuery: true,
             },
             heading: {
               classes: 'butt',
+              canCopy: true,
             },
             list: {
               classes: 'butt',

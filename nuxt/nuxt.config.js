@@ -1,6 +1,6 @@
 import getTransform from '@baleada/markdown-to-prose'
 import propsInterfaces from '@baleada/prose/vue/propsInterfaces'
-import MarkdownItSpaLinks from '@baleada/markdown-it-spa-links'
+import MarkdownItSpaLinks from '@baleada/spa-links/markdown-it'
 import refractor from 'refractor'
 import rehype from 'rehype'
 
@@ -66,33 +66,33 @@ export default {
       }
 
       const transform = getTransform({ templateType: 'vue', propsInterfaces }, {
-        markdownIt: {
-          html: true,
-          linkify: true,
-          highlight: (code, lang) => {
-            try {
-              const children = refractor.highlight(code, lang),
-                    html = rehype()
-                      .stringify({ type: 'root', children })
-                      .toString()
-              return escapeRawVueExpression(html)
-            } catch (error) {
-              console.warn(error)
-              return ''
+            markdownIt: {
+              html: true,
+              linkify: true,
+              highlight: (code, lang) => {
+                try {
+                  const children = refractor.highlight(code, lang),
+                        html = rehype()
+                          .stringify({ type: 'root', children })
+                          .toString()
+                  return escapeRawVueExpression(html)
+                } catch (error) {
+                  console.warn(error)
+                  return ''
+                }
+              },
+              plugins: [
+                [MarkdownItSpaLinks, { spa: 'nuxt' }]
+              ],
+            },
+            before: ({ frontMatter: { title } }) => `<ProseHeading :level="1">${title}</ProseHeading>\n`,
+          }),
+          prose = {
+            loader: '@baleada/loader/lib/webpack',
+            options: {
+              transform: ({ source, id }) => transform(source, id)
             }
-          },
-          plugins: [
-            [MarkdownItSpaLinks, { spa: 'nuxt' }]
-          ],
-        },
-        before: ({ frontMatter: { title } }) => `<ProseHeading :level="1">${title}</ProseHeading>\n`,
-      }),
-            prose = {
-              loader: '@baleada/loader/lib/webpack',
-              options: {
-                transform: (source, { resourcePath }) => transform(source, resourcePath)
-              }
-            }
+          }
 
       config.module.rules.push({
         test: /\.md$/,

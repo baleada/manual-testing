@@ -16,11 +16,14 @@
 import { reactive, ref, isRef, toRefs, computed, readonly, watch, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted, onErrorCaptured, onRenderTracked, onRenderTriggered, provide, inject } from '@vue/composition-api'
 
 import { useListenable } from '@baleada/composition/vue'
-import { dragdrop } from '@baleada/listenable-gestures'
-
-import { swipe } from '@baleada/listenable-gestures/factories'
-
-console.log(swipe())
+import {
+  clicks,
+  drag,
+  dragdrop,
+  pan,
+  swipe,
+  taps,
+} from '@baleada/listenable-gestures'
 
 export default {
   setup() {
@@ -28,22 +31,30 @@ export default {
           el = ref(null),
           el2 = ref(null)
 
-    const listenable = useListenable('dragdrop', { gesture: dragdrop })
+    const listenable = useListenable('clicks', {
+        recognizeable: {
+          handlers: swipe({
+            // onDown: data => console.log(JSON.stringify(data, null, 2)),
+            // onMove: data => console.log(JSON.stringify(data, null, 2)),
+            // onEnd: data => console.log(data.status),
+          })
+        }
+      })
 
     function listen () {
       listenable.value.listen(
-        (event, gesture, api) => {
-          console.log(JSON.parse(JSON.stringify({ event, gesture, api })))
+        (event, api) => {
+          console.log({
+            velocity: listenable.value.recognizeable.metadata.velocity,
+            distance: listenable.value.recognizeable.metadata.distance,
+            direction: {
+              fromStart: api.toDirection(listenable.value.recognizeable.metadata.angle.fromStart.degrees),
+              fromPrevious: api.toDirection(listenable.value.recognizeable.metadata.angle.fromPrevious.degrees),
+            }
+          })
         },
         {
           target: main.value,
-          gesture: {
-            // onStart: gesture => console.log(gesture.metadata),
-            // onMove: gesture => console.log(gesture.metadata),
-            // onCancel: gesture => console.log(gesture.metadata),
-            // onEnd: gesture => console.log(gesture.metadata),
-            minClicks: 2,
-          },
           // whitelist: ['section.one']
         }
       )
@@ -55,7 +66,7 @@ export default {
     }
 
     function stop () {
-      listenable.value.stop({ target: el.value })
+      listenable.value.stop()
     }
     function stop2 () {
       listenable.value.stop({ target: el2.value })

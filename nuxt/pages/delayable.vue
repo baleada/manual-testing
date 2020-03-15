@@ -1,71 +1,72 @@
-<template>
-  <main>
-    <button @click="doStuff">
-      doStuff
-    </button>
-    <button @click="doStuff2">
-      doStuff2
-    </button>
-    <div><span>executions: </span></div>
-    <pre><code>{{ executions }}</code></pre>
-    <div><span>time: </span></div>
-    <pre><code>{{ time }}</code></pre>
-    <div><span>timeElapsed: </span></div>
-    <pre><code>{{ timeElapsed }}</code></pre>
-    <div><span>timeRemaining: </span></div>
-    <pre><code>{{ timeRemaining }}</code></pre>
+<template lang="html">
+  <main class="relative flex flex-col items-center h-screen">
+    <div class="flex items-center">
+      <button class="p-2 rounded-full bg-blue-6 text-blue-1" type="button" @click="delay">delay</button>
+      <button class="p-2 rounded-full bg-blue-6 text-blue-1" type="button" @click="pause">pause</button>
+      <button class="p-2 rounded-full bg-blue-6 text-blue-1" type="button" @click="resume">resume</button>
+      <button class="p-2 rounded-full bg-blue-6 text-blue-1" type="button" @click="seek">seek</button>
+      <button class="p-2 rounded-full bg-blue-6 text-blue-1" type="button" @click="stop">stop</button>
+      <button class="p-2 rounded-full bg-blue-6 text-blue-1" type="button" @click="log">log</button>
+    </div>
+    <section
+      class="relative mt-8"
+      ref="el"
+      :style="{ marginRight: 'auto', height: '250px', width: '250px', 'background-color': 'hsla(242, 100%, 97%, 1.0)' }"
+    />
   </main>
 </template>
 
 <script>
-import { ref, computed, onMounted } from '@vue/composition-api'
-import useDelayable from '~/assets/js/composition/useDelayable'
+import { ref, onMounted } from '@vue/composition-api'
+import { useDelayable } from '@baleada/composition/vue'
 
 export default {
   setup() {
-    const value1 = ref(''),
-          value2 = ref(''),
-          instance = useDelayable((param1, param2) => {
-            value1.value = param1
-            value2.value = param2
-          }),
-          timeElapsed = computed(() => {
-            return JSON.stringify({
-              total: Math.round(instance.timeElapsed.total),
-              sinceLastExecution: Math.round(instance.timeElapsed.sinceLastExecution)
-            }, null, 2)
-          }),
-          timeRemaining = computed(() => Math.round(instance.timeRemaining)),
-          executions = computed(() => instance.executions),
-          time = computed(() => JSON.stringify(instance.time, null, 2))
+    const el = ref(null),
+          delayable = useDelayable(
+            () => console.log('yay'),
+            { delay: 500, executions: 4 }
+          )
 
-    function doStuff () {
-      instance.interval(2000, ['butt', 'face'])
+    function delay () {
+      delayable.value.delay()
+    }
+    
+    function pause () {
+      delayable.value.pause()
     }
 
-    function doStuff2 () {
-      instance.stop()
+    function resume () {
+      delayable.value.resume()
+    }
+
+    function stop () {
+      delayable.value.stop()
+    }
+
+    function seek () {
+      delayable.value.seek(1.25)
+    }
+
+    function log () {
+      console.log(JSON.stringify(delayable.value.time, null, 2))
+      console.log(delayable.value.progress, null, 2)
+      console.log(delayable.value.executions)
+      console.log(delayable.value.status)
     }
 
     return {
-      value1,
-      value2,
-      instance,
-      time,
-      executions,
-      timeElapsed,
-      timeRemaining,
-      doStuff,
-      doStuff2,
+      el,
+      delay,
+      pause,
+      resume,
+      stop,
+      seek,
+      log,
     }
   },
 }
 </script>
 
-<style media="screen">
-  body {
-    background-color: #333;
-    color: #fafafa;
-    padding: 100px;
-  }
+<style lang="css" scoped>
 </style>

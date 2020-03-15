@@ -3,6 +3,7 @@
     <div class="flex items-center">
       <button class="p-2 rounded-full bg-blue-6 text-blue-1" type="button" @click="play">play</button>
       <button class="p-2 rounded-full bg-blue-6 text-blue-1" type="button" @click="reverse">reverse</button>
+      <button class="p-2 rounded-full bg-blue-6 text-blue-1" type="button" @click="setPlaybackRate">setPlaybackRate</button>
       <button class="p-2 rounded-full bg-blue-6 text-blue-1" type="button" @click="pause">pause</button>
       <button class="p-2 rounded-full bg-blue-6 text-blue-1" type="button" @click="restart">restart</button>
       <button class="p-2 rounded-full bg-blue-6 text-blue-1" type="button" @click="stop">stop</button>
@@ -65,7 +66,7 @@ export default {
             keyframes,
             // Options
             {
-              duration: 3000,
+              duration: 5000,
               timing: [
                 control1,
                 control2,
@@ -75,10 +76,10 @@ export default {
           )
     
     function handleFrame (frame) {
-        const { data: { translate, backgroundColor, textContent } } = frame
-        el.value.style.transform = `translateX(${translate}%`
-        el.value.style.backgroundColor = backgroundColor
-        el.value.textContent = textContent.join('')
+      const { data: { translate, backgroundColor, textContent } } = frame
+      el.value.style.transform = `translateX(${translate}%`
+      el.value.style.backgroundColor = backgroundColor
+      el.value.textContent = textContent.join('')
     }
 
     function play () {
@@ -87,6 +88,10 @@ export default {
 
     function reverse () {
       animateable.value.reverse(handleFrame)
+    }
+
+    function setPlaybackRate () {
+      animateable.value.setPlaybackRate(4)
     }
 
     function pause () {
@@ -115,6 +120,7 @@ export default {
       play,
       reverse,
       pause,
+      setPlaybackRate,
       restart,
       stop,
       seek,
