@@ -28,4 +28,12 @@ svg {
   height: 100px;
   width: 100px;
 }
+
+.baleada-interface-button svg {
+  height: auto;
+  width: 100%;
+  fill: currentColor;
+  color: black;
+}
+
 </style>

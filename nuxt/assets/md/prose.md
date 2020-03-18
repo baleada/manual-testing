@@ -22,132 +22,25 @@ Testing **bold** and *em* -->
 aside
 ::: -->
 
+<!-- ::: type="info"
+aside
+::: -->
 
-<!-- :::
+
+<!-- ::: tweetUrl="current" canTweet
 > blockquote
 ::: -->
 
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-asfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-asfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-asfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-asfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-asfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-asfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-asfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-asfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-asfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-asfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-adsfasfasdf
-
-::: hasLineNumbers
+::: hasLineNumbers canCopy
 ```js
 codeblock
 other line
 ```
 :::
 
-<!-- ::: summary="summary's"
+::: summary="summary's"
 details
-::: -->
+:::
 
 <!-- ::: canFilterByQuery canChangeFilterCaseSensitivity
 - hello even 0

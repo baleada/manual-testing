@@ -88,7 +88,7 @@ export default {
             before: ({ frontMatter: { title } }) => `<ProseHeading :level="1">${title}</ProseHeading>\n`,
           }),
           prose = {
-            loader: '@baleada/loader/lib/webpack',
+            loader: '@baleada/source-transform/webpack',
             options: {
               transform: ({ source, id }) => transform(source, id)
             }

@@ -18,7 +18,7 @@
     "nuxt": "^2.0.0",
     "refractor": "^2.10.0",
     "rehype": "^9.0.1",
-    "tailwindcss": "^1.1.4"
+    "tailwindcss": "^1.2.0"
   },
   "devDependencies": {}
 }

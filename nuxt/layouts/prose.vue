@@ -2,6 +2,7 @@
 <ProseLayout
   :fullPathInjectKey="fullPathInjectKey"
   :defaultPropsInjectKey="defaultPropsInjectKey"
+  :interfacePropsInjectKey="interfacePropsInjectKey"
 >
   <ThreeColumn />
 </ProseLayout>
@@ -44,6 +45,7 @@ export default {
             },
             codeblock: {
               classes: 'butt',
+              canCopy: true,
             },
             details: {
               classes: 'butt',
@@ -65,17 +67,26 @@ export default {
             section: {
               classes: 'butt',
             },
+          },
+          interfacePropsInjectKey = Symbol('interfaceProps'),
+          interfaceProps = {
+            button: {
+              hasHapticShape: true,
+              hapticShapeMaxOpacity: 1,
+            }
           }
 
 
     provide(fullPathInjectKey, fullPath)
     provide(messagesInjectKey, messages)
     provide(defaultPropsInjectKey, defaultProps)
+    provide(interfacePropsInjectKey, interfaceProps)
 
     return {
       fullPathInjectKey,
       messagesInjectKey,
       defaultPropsInjectKey,
+      interfacePropsInjectKey,
     }
   },
 }
