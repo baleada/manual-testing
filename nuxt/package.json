@@ -11,9 +11,6 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@baleada/loader": "file:baleada-loader-0.0.0.tgz",
-    "@baleada/tailwind-increment": "^0.1.0",
-    "@baleada/tailwind-linear": "^0.2.1",
     "@vue/composition-api": "^0.3.4",
     "nuxt": "^2.0.0",
     "refractor": "^2.10.0",

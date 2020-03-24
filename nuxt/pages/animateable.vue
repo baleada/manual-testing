@@ -20,38 +20,61 @@
 
 <script>
 import { ref, onMounted } from '@vue/composition-api'
-import { useAnimateable } from '@baleada/composition/vue'
+import { useAnimateable } from '@baleada/composition-vue'
+
+import {
+  linear,
+  easingsNetInSine,
+  easingsNetOutSine,
+  easingsNetInOutSine,
+  easingsNetInQuad,
+  easingsNetOutQuad,
+  easingsNetInOutQuad,
+  easingsNetInCubic,
+  easingsNetOutCubic,
+  easingsNetInOutCubic,
+  easingsNetInQuart,
+  easingsNetInQuint,
+  easingsNetOutQuint,
+  easingsNetInOutQuint,
+  easingsNetInExpo,
+  easingsNetOutExpo,
+  easingsNetInOutExpo,
+  easingsNetInCirc,
+  easingsNetOutCirc,
+  easingsNetInOutCirc,
+  easingsNetInBack,
+  easingsNetOutBack,
+  easingsNetInOutBack,
+} from '@baleada/animateable-timings'
 
 export default {
   setup() {
     const el = ref(null),
-          control1 = { x: 0.215, y: 0.61 },
-          control2 = { x: 0.355, y: 1 },
-          // control1 = { x: 0, y: 0 },
-          // control2 = { x: 1, y: 1 },
           keyframes = [
+            // Translate
             { 
               progress: 0.75,
               data: {
                 translate: 0,
               },
-            },
-            { 
-              progress: 0,
-              data: {
-                backgroundColor: 'hsla(242, 100%, 97%, 1.0)',
-                textContent: [],
-              },
-              timing: [
-                { x: 0, y: 0 },
-                { x: 1, y: 1 },
-              ]
+              timing: easingsNetInOutBack,
             },
             { 
               progress: 1,
               data: {
                 translate: 150,
               },
+            },
+
+            // Background color and textContent
+            { 
+              progress: 0,
+              data: {
+                backgroundColor: 'hsla(242, 100%, 97%, 1.0)',
+                textContent: [],
+              },
+              timing: easingsNetInOutBack,
             },
             { 
               progress: .5,
@@ -67,10 +90,7 @@ export default {
             // Options
             {
               duration: 5000,
-              timing: [
-                control1,
-                control2,
-              ],
+              timing: easingsNetInOutBack,
               iterations: 1,
             },
           )

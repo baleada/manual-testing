@@ -71,8 +71,8 @@ export default {
           interfacePropsInjectKey = Symbol('interfaceProps'),
           interfaceProps = {
             button: {
-              hasHapticShape: true,
-              hapticShapeMaxOpacity: 1,
+              hasHaptics: true,
+              hapticsMaxOpacity: .1,
             }
           }
 

@@ -15,7 +15,7 @@
 <script>
 import { reactive, ref, isRef, toRefs, computed, readonly, watch, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted, onErrorCaptured, onRenderTracked, onRenderTriggered, provide, inject } from '@vue/composition-api'
 
-import { useListenable } from '@baleada/composition/vue'
+import { useListenable } from '@baleada/composition-vue'
 import {
   clicks,
   drag,
@@ -31,9 +31,9 @@ export default {
           el = ref(null),
           el2 = ref(null)
 
-    const listenable = useListenable('clicks', {
+    const listenable = useListenable('recognizeable', {
         recognizeable: {
-          handlers: swipe({
+          handlers: drag({
             // onDown: data => console.log(JSON.stringify(data, null, 2)),
             // onMove: data => console.log(JSON.stringify(data, null, 2)),
             // onEnd: data => console.log(data.status),
@@ -43,14 +43,12 @@ export default {
 
     function listen () {
       listenable.value.listen(
-        (event, api) => {
+        ({ event, recognizeable, api }) => {
           console.log({
-            velocity: listenable.value.recognizeable.metadata.velocity,
-            distance: listenable.value.recognizeable.metadata.distance,
-            direction: {
-              fromStart: api.toDirection(listenable.value.recognizeable.metadata.angle.fromStart.degrees),
-              fromPrevious: api.toDirection(listenable.value.recognizeable.metadata.angle.fromPrevious.degrees),
-            }
+            velocity: recognizeable.metadata.velocity,
+            distance: recognizeable.metadata.distance,
+            angle: recognizeable.metadata.angle,
+            direction: recognizeable.metadata.direction,
           })
         },
         {
@@ -58,6 +56,8 @@ export default {
           // whitelist: ['section.one']
         }
       )
+
+      console.log(listenable.value.activeListeners)
     }
     function listen2 () {
       listenable.value.listen((touch) => {
