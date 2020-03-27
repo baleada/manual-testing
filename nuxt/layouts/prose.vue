@@ -56,6 +56,9 @@ export default {
             },
             heading: {
               classes: 'butt',
+              descendant1Classes: 'bg-blue-6',
+              descendant2Classes: 'bg-green-6',
+              descendant3Classes: 'bg-red-6',
               canCopy: true,
             },
             list: {

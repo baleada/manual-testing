@@ -16,9 +16,21 @@ Testing **bold** and *em* -->
 <!-- :::
 ## `G`eneric heading
 ::: -->
+<!-- 
 
+::: type="info"
+aside
+:::
 
-<!-- ::: type="info"
+::: type="warning"
+aside
+:::
+
+::: type="danger"
+aside
+:::
+
+::: type="success"
 aside
 ::: -->
 
@@ -38,9 +50,9 @@ other line
 ```
 :::
 
-::: summary="summary's"
+<!-- ::: summary="summary's"
 details
-:::
+::: -->
 
 <!-- ::: canFilterByQuery canChangeFilterCaseSensitivity
 - hello even 0
@@ -51,18 +63,18 @@ details
 
 
 
-::: ariaLabel="example grid" canChangeFilterCaseSensitivity
+<!-- ::: ariaLabel="example grid" canChangeFilterCaseSensitivity
 | Baleada | Prose | Grid | Example |
 | --- | --- | --- | --- |
 | hello even 0 | hello even 0 | hello even 0 | hello even 0 |
 | hello odd 1 | hello odd 1 | hello odd 1 | hello odd 1 |
 | hello even 2 | hello even 2 | hello even 2 | hello even 2 |
 | hello odd 3 | hello odd 3 | hello odd 3 | hello odd 3 |
-:::
+::: -->
 
-:::
+<!-- :::
 # Heading
-:::
+::: -->
 
 
 <!-- 
