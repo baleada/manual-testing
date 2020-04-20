@@ -1,11 +1,7 @@
-const defaultTheme = require('tailwindcss/defaultTheme'),
-      linearNumeric = require('@baleada/linear-numeric/tailwind')
-
-// console.log(linearNumeric())
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
 
 module.exports = {
   theme: {
-    ...defaultTheme,
-    ...linearNumeric({ increment: 1 }),
+    ...linearNumeric()
   }
 }

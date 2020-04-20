@@ -1,6 +1,6 @@
-import getTransform from '@baleada/markdown-to-prose'
-import propsInterfaces from '@baleada/prose-vue/lib/propsInterfaces'
-import MarkdownItSpaLinks from '@baleada/spa-links/markdown-it'
+import getTransform from '@baleada/source-transform-markdown-to-prose'
+import propsInterfaces from '@baleada/vue-prose/lib/propsInterfaces'
+import MarkdownItSpaLinks from '@baleada/markdown-it-spa-links'
 import refractor from 'refractor'
 import rehype from 'rehype'
 
@@ -88,7 +88,7 @@ export default {
             before: ({ frontMatter: { title } }) => `<ProseHeading :level="1">${title}</ProseHeading>\n`,
           }),
           prose = {
-            loader: '@baleada/source-transform/webpack',
+            loader: '@baleada/webpack-source-transform',
             options: {
               transform: ({ source, id }) => transform(source, id)
             }

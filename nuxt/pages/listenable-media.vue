@@ -15,7 +15,7 @@
 <script>
 import { reactive, ref, isRef, toRefs, computed, readonly, watch, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted, onErrorCaptured, onRenderTracked, onRenderTriggered, provide, inject } from '@vue/composition-api'
 
-import { useListenable } from '@baleada/composition-vue'
+import { useListenable } from '@baleada/vue-composition'
 
 
 export default {

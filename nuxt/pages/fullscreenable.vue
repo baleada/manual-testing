@@ -9,7 +9,7 @@
 
 <script>
 import { ref } from '@vue/composition-api'
-import { useFullscreenable } from '@baleada/composition-vue'
+import { useFullscreenable } from '@baleada/vue-composition'
 
 export default {
   setup () {

@@ -18,7 +18,7 @@
 
 <script>
 import { ref, onMounted } from '@vue/composition-api'
-import { useDelayable } from '@baleada/composition-vue'
+import { useDelayable } from '@baleada/vue-composition'
 
 export default {
   setup() {

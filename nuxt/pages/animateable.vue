@@ -20,7 +20,7 @@
 
 <script>
 import { ref, onMounted } from '@vue/composition-api'
-import { useAnimateable } from '@baleada/composition-vue'
+import { useAnimateable } from '@baleada/vue-composition'
 
 import {
   linear,

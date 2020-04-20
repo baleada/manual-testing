@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import { EvaActivity } from '@baleada/icons-vue/eva-icons'
-import { SimpleGitLab } from '@baleada/icons-vue/simple-icons'
-import { HeroiconsGlobe } from '@baleada/icons-vue/heroicons'
+import { EvaActivity } from '@baleada/vue-icons/eva-icons'
+import { SimpleGitLab } from '@baleada/vue-icons/simple-icons'
+import { HeroiconsGlobe } from '@baleada/vue-icons/heroicons'
 
-import { EvaGlobe2 } from '@baleada/icons-vue'
-import { SimpleTwitter } from '@baleada/icons-vue'
-import { HeroiconsCashOutline } from '@baleada/icons-vue'
+import { EvaGlobe2 } from '@baleada/vue-icons'
+import { SimpleTwitter } from '@baleada/vue-icons'
+import { HeroiconsCashOutline } from '@baleada/vue-icons'
 
 
 export default {

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { useNavigateable } from '@baleada/composition-vue'
+import { useNavigateable } from '@baleada/vue-composition'
 
 export default {
   setup () {

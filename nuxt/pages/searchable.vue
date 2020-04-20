@@ -17,7 +17,7 @@
 
 <script>
 import { ref, computed } from '@vue/composition-api'
-import { useSearchable } from '@baleada/composition-vue'
+import { useSearchable } from '@baleada/vue-composition'
 
 export default {
   setup () {
