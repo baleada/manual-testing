@@ -1,22 +1,17 @@
-# nuxt
+# Balaeda informal testing sandbox
 
-> Balaeda informal testing sandbox
+@baleada/animateable-timings
+@baleada/listenable-gestures
+@baleada/logic
+@baleada/markdown-it-prose-container
+@baleada/markdown-it-spa-links
+@baleada/prepare
+@baleada/tailwind-linear-numeric
+@baleada/tailwind-theme
+@baleada/tailwind-theme-utils
+@baleada/vue-composition
+@baleada/vue-icons
+@baleada/vue-interface
+@baleada/vue-prose
+@baleada/source-transform-markdown-to-prose
 
-## Build Setup
-
-``` bash
-# install dependencies
-$ npm run install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
