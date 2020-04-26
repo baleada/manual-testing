@@ -5,27 +5,19 @@
       class="bg-gray-9 text-gray-4 p-4 w-full max-w-2"
       type="string"
       :value="completeable.string"
-      @input="handleInput"
-      @select="handleSelect"
-      @blur="handleBlur"
-      @focus="handleFocus"
-      @click="handleClick"
-      @keyup.up="handleArrow"
-      @keyup.right="handleArrow"
-      @keyup.down="handleArrow"
-      @keyup.left="handleArrow"
     />
     <span class="mt-3 block w-full max-w-2 h-em-1">{{ completeable.segment }}</span>
     <span class="mt-3 block w-full max-w-2 h-em-1">inputStatus: {{ inputStatus }}</span>
     <span class="mt-3 block w-full max-w-2 h-em-1">valueStatus: {{ valueStatus }}</span>
+    <span class="mt-3 block w-full max-w-2 h-em-1">arrowStatus: {{ arrowStatus }}</span>
     <pre class="mt-3 block w-full max-w-2"><code>{{ jsonSelection }}</code></pre>
     <button type="button" class="mt-3 border-4 border-gray-4 p-2 rounded-5" @click="complete">complete</button>
   </main>
 </template>
 
 <script>
-import { watchEffect, watch, computed, ref } from '@vue/composition-api'
-import { useCompleteable } from '@baleada/vue-composition'
+import { watchEffect, watch, computed, ref, onMounted } from '@vue/composition-api'
+import { useCompleteable, useListenable } from '@baleada/vue-composition'
 
 function nextTick (callback) {
   setTimeout(callback, 0)
@@ -33,12 +25,15 @@ function nextTick (callback) {
 
 export default {
   setup () {
+    // Create shared state for handlers
     const completeable = useCompleteable('Baleada: a toolkit for building web apps', { segment: { from: 'selection', to: 'selection' } }),
           baleada = ref(null),
           jsonSelection = computed(() => JSON.stringify(completeable.value.selection)),
           inputStatus = ref('ready'), // ready|focused|blurred
-          valueStatus = ref('ready') // ready|selecting|selected
+          valueStatus = ref('ready'), // ready|selecting|selected
+          arrowStatus = ref('ready') // ready|pressed|handled
 
+    // Define handler logic
     function handleInput (event) {
       const { target: { value, selectionStart: start, selectionEnd: end, selectionDirection: direction } } = event
       completeable.value.setString(value)
@@ -60,29 +55,49 @@ export default {
       }
     }
 
-    function handleClick (event) {
+    function handleMouseup (event) {
+      const { target: { selectionStart: start, selectionEnd: end, selectionDirection: direction } } = event
+
       switch (inputStatus.value) {
       case 'ready':
       case 'blurred':
         inputStatus.value = 'focused'
-        completeable.value.setSelection({ start: 0, end: completeable.value.string.length, direction: 'none' })
+        nextTick(completeable.value.setSelection({ start, end, direction }))
         break
       case 'focused':
-        const { target: { selectionStart: start, selectionEnd: end, selectionDirection: direction } } = event
-        completeable.value.setSelection({ start, end, direction })
+        nextTick(completeable.value.setSelection({ start, end, direction }))  
         break
       }      
     }
 
-    function handleArrow (event) {
-      const { target: { selectionStart: start, selectionEnd: end, selectionDirection: direction }, shiftKey } = event
+    function handleArrowKeyup (event) {
+      const { shiftKey, metaKey, target: { selectionStart: start, selectionEnd: end, selectionDirection: direction } } = event
       if (!shiftKey) { // Breaks for remapped keyboards :'(
         completeable.value.setSelection({ start, end, direction })
       }
     }
 
-    function handleBlur () {
-      inputStatus.value = 'blurred'
+    function handleArrowKeydown (event) {
+      const { metaKey } = event
+      if (metaKey) {
+        arrowStatus.value = 'unhandled'
+      }
+    }
+
+    function handleMeta (event) {
+      const { shiftKey, target: { selectionStart: start, selectionEnd: end, selectionDirection: direction } } = event
+      if (!shiftKey) { // Breaks for remapped keyboards :'(
+        switch (arrowStatus.value) {
+        case 'ready':
+        case 'handled':
+          // do nothing
+          break
+        case 'unhandled':
+          arrowStatus.value = 'handled'
+          completeable.value.setSelection({ start, end, direction })
+        }
+        completeable.value.setSelection({ start, end, direction })
+      }
     }
 
     function handleFocus ({ target: { selectionStart: start, selectionEnd: end, selectionDirection: direction } }) {
@@ -106,7 +121,38 @@ export default {
         break
       }
     }
+
+    function handleBlur () {
+      inputStatus.value = 'blurred'
+    }
+
+    // Set up listenables
+    const input = useListenable('input'),
+          select = useListenable('select'),
+          mouseup = useListenable('mouseup'),
+          arrowKeyup = useListenable('arrow', { keycombo: 'up' }),
+          arrowKeydown = useListenable('arrow'),
+          meta = useListenable('cmd', { keycombo: 'up' }),
+          focus = useListenable('focus'),
+          blur = useListenable('blur'),
+          listenables = [
+            { listenable: input, handler: handleInput },
+            { listenable: select, handler: handleSelect },
+            { listenable: mouseup, handler: handleMouseup },
+            { listenable: arrowKeyup, handler: handleArrowKeyup },
+            { listenable: arrowKeydown, handler: handleArrowKeydown },
+            { listenable: meta, handler: handleMeta },
+            { listenable: focus, handler: handleFocus },
+            { listenable: blur, handler: handleBlur },
+          ]
+
+    onMounted(() => {
+      listenables.forEach(({ listenable, handler }) => {
+        listenable.value.listen(handler, { target: baleada.value })
+      })
+    })
     
+    // Define completion and selection logic
     function complete () {
       completeable.value.complete('baleada', { newSelection: 'completion' })
     }
@@ -151,11 +197,14 @@ export default {
       jsonSelection,
       complete,
       handleBlur,
-      handleClick,
+      handleMouseup,
       handleFocus,
-      handleArrow,
+      handleArrowKeyup,
+      handleArrowKeydown,
+      handleMeta,
       inputStatus,
       valueStatus,
+      arrowStatus,
     }
   }
 }
