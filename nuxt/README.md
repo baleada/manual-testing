@@ -1,6 +1,6 @@
 # Balaeda informal testing sandbox
 
-@baleada/animateable-timings
+@baleada/animateable-utils
 @baleada/listenable-gestures
 @baleada/logic
 @baleada/markdown-it-prose-container

@@ -46,7 +46,7 @@ import {
   easingsNetInBack,
   easingsNetOutBack,
   easingsNetInOutBack,
-} from '@baleada/animateable-timings'
+} from '@baleada/animateable-utils'
 
 export default {
   setup() {
@@ -74,7 +74,7 @@ export default {
                 backgroundColor: 'hsla(242, 100%, 97%, 1.0)',
                 textContent: [],
               },
-              timing: easingsNetInOutBack,
+              // timing: easingsNetInOutBack,
             },
             { 
               progress: .5,
@@ -90,7 +90,7 @@ export default {
             // Options
             {
               duration: 5000,
-              timing: easingsNetInOutBack,
+              // timing: easingsNetInOutBack,
               iterations: 1,
             },
           )
