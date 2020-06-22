@@ -8,6 +8,9 @@
 
     <HeroiconsGlobe :class="'h-10 w-10 fill-current'" />
     <HeroiconsCashOutline :class="'h-10 w-10 fill-current'" />
+
+    <OcticonsBold24 :class="'h-10 w-10 fill-current'" />
+    <OcticonsItalic24 :class="'h-10 w-10 fill-current'" />
   </div>
 </template>
 
@@ -15,10 +18,12 @@
 import { EvaActivity } from '@baleada/vue-icons/eva-icons'
 import { SimpleGitLab } from '@baleada/vue-icons/simple-icons'
 import { HeroiconsGlobe } from '@baleada/vue-icons/heroicons'
+import { OcticonsBold24 } from '@baleada/vue-icons/octicons'
 
 import { EvaGlobe2 } from '@baleada/vue-icons'
 import { SimpleTwitter } from '@baleada/vue-icons'
 import { HeroiconsCashOutline } from '@baleada/vue-icons'
+import { OcticonsItalic24 } from '@baleada/vue-icons'
 
 
 export default {
@@ -29,6 +34,8 @@ export default {
     EvaGlobe2,
     HeroiconsGlobe,
     HeroiconsCashOutline,
+    OcticonsBold24,
+    OcticonsItalic24,
   },
   setup () {
     
