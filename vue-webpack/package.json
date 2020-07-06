@@ -1,0 +1,22 @@
+{
+  "name": "vue-webpack",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "link": "npm link @baleada/animateable-utils @baleada/listenable-gestures @baleada/logic @baleada/markdown-it-prose-container @baleada/markdown-it-spa-links @baleada/prepare @baleada/tailwind-linear-numeric @baleada/tailwind-theme @baleada/tailwind-theme-utils @baleada/vue-composition @baleada/vue-features @baleada/vue-icons @baleada/vue-interface @baleada/vue-prose @baleada/source-transform-markdown-to-prose"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "tailwindcss": "^1.4.6",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.4.0",
+    "@vue/cli-plugin-router": "~4.4.0",
+    "@vue/cli-service": "~4.4.0",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
