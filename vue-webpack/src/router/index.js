@@ -6,6 +6,9 @@ const history = createWebHistory()
 export default createRouter({
   history,
   strict: true,
-  routes,
+  routes: [
+    { path: '/', name: 'Home', component: import('../views/Home.vue') },
+    ...routes,
+  ],
 })
 
