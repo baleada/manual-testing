@@ -1,15 +1,11 @@
-const fs = require('fs')
-const fromDirToRoutes = function ({ source }) {
-  const pages = fs.readdirSync('./src/tests'),
-        withoutExtensions = pages.map(page => page.replace(/\.vue$/, '')),
-        withRouterFormatting = withoutExtensions.map(name => {
-          return `{ path: '/${name}', name: '${name}', component: import('../tests/${name}.vue') }`
-        }).join(',')
-
-  console.log(withoutExtensions)
-
-  return `export default [${withRouterFormatting}]`
-}
+const getTransform = require('@baleada/source-transform-files-to-routes'),
+      filesToRoutes = getTransform({
+        router: 'vue',
+        pathToFiles: {
+          absolute: 'src/tests',
+          relativeFromRoutes: '../tests',
+        }
+      })
 
 module.exports = {
   configureWebpack: config => {
@@ -21,7 +17,11 @@ module.exports = {
             {
               loader: '@baleada/webpack-source-transform',
               options: {
-                transform: fromDirToRoutes,
+                transform: () => {
+                  const routes = filesToRoutes()
+                  console.log(routes)
+                  return routes
+                },
               }
             }
           ]
