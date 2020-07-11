@@ -5,7 +5,7 @@
   "scripts": {
     "build": "vue-cli-service build",
     "dev": "vue-cli-service serve",
-    "link": "npm link @baleada/animateable-utils @baleada/listenable-gestures @baleada/logic @baleada/markdown-it-prose-container @baleada/markdown-it-spa-links @baleada/prepare @baleada/tailwind-linear-numeric @baleada/tailwind-theme @baleada/tailwind-theme-utils @baleada/vue-composition @baleada/vue-features @baleada/vue-icons @baleada/vue-interface @baleada/vue-prose @baleada/source-transform-markdown-to-prose @baleada/source-transform-files-to-routes"
+    "link": "npm link @baleada/animateable-utils @baleada/listenable-gestures @baleada/logic @baleada/markdown-it-prose-container @baleada/markdown-it-spa-links @baleada/prepare @baleada/tailwind-linear-numeric @baleada/tailwind-theme @baleada/tailwind-theme-utils @baleada/vue-composition @baleada/vue-features @baleada/vue-icons @baleada/vue-interface @baleada/vue-prose @baleada/source-transform-markdown-to-prose @baleada/source-transform-files-to-routes @baleada/source-transform-files-to-index"
   },
   "dependencies": {
     "core-js": "^3.6.5",

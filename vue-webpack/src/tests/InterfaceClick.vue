@@ -1,7 +1,9 @@
 <template lang="html">
   <div class="h-screen w-screen flex items-center justify-center">
     <InterfaceClick
-      class="p-3 bg-teal-60 rounded-4 text-teal-10 uppercase font-6"
+      interfaceClasses="p-3 bg-teal-60 rounded-4 focus:shadow-outline overflow-hidden"
+      contentsClasses="text-teal-10 uppercase font-6"
+      hapticsClasses="w-full"
       @click="clickHandle"
       :hasHaptics="true"
     >

@@ -4,9 +4,9 @@
       type="textarea"
       :hasHaptics="true"
       :class="rootClasses"
-      :descendant1Classes="hapticsClasses"
-      :descendant2Classes="inputClasses"
-      :descendant3Classes="contentsClasses"
+      :hapticsClasses="hapticsClasses"
+      :interfaceClasses="inputClasses"
+      :contentsClasses="contentsClasses"
       v-bind="attrs"
       v-on="listeners"
     >
@@ -261,8 +261,8 @@ export default {
   },
   setup (props) {
     console.log('here')
-    const attrs = computed(() => getCurrentInstance().$attrs),
-          listeners = computed(() => getCurrentInstance().$listeners),
+    const attrs = computed(() => getCurrentInstance().$attrs || {}),
+          listeners = computed(() => getCurrentInstance().$listeners || {}),
           sizeClasses = computed(() => sizes[props.size]),
           decorationClasses = computed(() => {
             return props.decorations
