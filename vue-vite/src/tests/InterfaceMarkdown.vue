@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="h-screen w-screen flex flex-col space-y-6 items-center justify-center bg-blue-20">
     <span>string: {{ string }}</span>
     <InterfaceMarkdown

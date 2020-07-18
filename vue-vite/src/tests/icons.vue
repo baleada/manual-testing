@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="m-10">
     <EvaActivity :class="'h-10 w-10'"/>
     <EvaGlobe2 :class="'h-10 w-10'"/>

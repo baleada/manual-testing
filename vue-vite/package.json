@@ -1,0 +1,20 @@
+{
+  "name": "vue-vite",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "link": "npm link @baleada/animateable-utils @baleada/listenable-gestures @baleada/logic @baleada/markdown-it-prose-container @baleada/markdown-it-spa-links @baleada/prepare @baleada/tailwind-linear-numeric @baleada/tailwind-theme @baleada/tailwind-theme-utils @baleada/vue-composition @baleada/vue-features @baleada/vue-icons @baleada/vue-interface @baleada/vue-prose @baleada/source-transform-markdown-to-prose @baleada/source-transform-files-to-routes @baleada/source-transform-files-to-index @baleada/rollup-plugin-source-transform"
+  },
+  "dependencies": {
+    "bezier-easing": "^2.1.0",
+    "fast-fuzzy": "^1.10.2",
+    "mix-css-color": "^0.1.1",
+    "vue": "^3.0.0-rc.1",
+    "vue-router": "^4.0.0-beta.2"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.0-rc.1",
+    "vite": "^1.0.0-rc.1"
+  }
+}
