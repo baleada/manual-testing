@@ -174,7 +174,7 @@ import {
   OcticonsListUnordered24,
   OcticonsHeading24,
   OcticonsHorizontalRule24
-} from '@baleada/vue-icons/octicons'
+} from '@baleada/vue-octicons'
 
 export default {
   components: {
