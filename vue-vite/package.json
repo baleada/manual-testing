@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "link": "npm link @baleada/animateable-utils @baleada/listenable-gestures @baleada/logic @baleada/markdown-it-prose-container @baleada/markdown-it-spa-links @baleada/prepare @baleada/tailwind-linear-numeric @baleada/tailwind-theme @baleada/tailwind-theme-utils @baleada/vue-composition @baleada/vue-features @baleada/vue-eva-icons @baleada/vue-heroicons @baleada/vue-octicons @baleada/vue-simple-icons @baleada/vue-teenyicons @baleada/vue-interface @baleada/vue-prose @baleada/source-transform-markdown-to-prose @baleada/source-transform-files-to-routes @baleada/source-transform-files-to-index @baleada/rollup-plugin-source-transform"
+    "link": "npm link @baleada/animateable-utils @baleada/listenable-gestures @baleada/logic @baleada/markdown-it-prose-container @baleada/markdown-it-spa-links @baleada/prepare @baleada/tailwind-linear-numeric @baleada/tailwind-theme @baleada/tailwind-theme-utils @baleada/vue-composition @baleada/vue-features @baleada/vue-eva-icons @baleada/vue-heroicons @baleada/vue-octicons @baleada/vue-simple-icons @baleada/vue-teenyicons @baleada/vue-interface @baleada/vue-prose @baleada/source-transform-markdown-to-prose @baleada/source-transform-files-to-routes @baleada/source-transform-files-to-index @baleada/rollup-plugin-source-transform @baleada/vite-serve-as-vue"
   },
   "dependencies": {
     "bezier-easing": "^2.1.0",

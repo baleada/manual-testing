@@ -5,7 +5,7 @@ const MarkdownIt = require('markdown-it'),
       },
       md = new MarkdownIt(markdownItOptions)
 
-const transform = markdown => `<template>${md.render(markdown)}</template>`
+const transform = ({ source: markdown }) => `<template>${md.render(markdown)}</template>`
 
 module.exports = transform
 

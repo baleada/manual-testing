@@ -7,39 +7,43 @@ const getFilesToRoutesTransform = require('@baleada/source-transform-files-to-ro
 const getFilesToIndexTransform = require('@baleada/source-transform-files-to-index'),      
       filesToIndex = getFilesToIndexTransform()
 
-const serveMarkdownAsVue = require('./util/serveMarkdownAsVue')
+const getServeAsVue = require('@baleada/vite-serve-as-vue'),
+      sourceTransformMarkdownToVueSfc = require('./util/sourceTransformMarkdownToVueSfc')
 
 module.exports = {
   alias: {
     'fast-fuzzy': '/node_modules/fast-fuzzy/lib/fuzzy.mjs', // Workaround until @rollup/plugin-node-resolve supports conditional exports
   },
   configureServer: [
-    // TODO: Files to routes and files to index
-    serveMarkdownAsVue,
+    getServeAsVue({ toVue: sourceTransformMarkdownToVueSfc, include: '**/*.md' }),
   ],
   rollupInputOptions: {
     cache: false,
     plugins: [
       sourceTransform({
-        include: '*.md',
+        include: '**.md',
         transform: ({ source }) => {
-          console.log(source)
-          return markdownToVueSfc({ source })
+          console.log('transforming markdown')
+          markdownToVueSfc({ source })
         },
       })
     ]
   },
   transforms: [
     {
-      test: ({ path })=> createFilter('**/src/tests/routes.js')(path),
+      test: ({ path }) => createFilter('**/src/tests/routes.js')(path),
       transform: ({ id }) => filesToRoutes({ id: id.replace(/^.*?\/src\//, 'src/') }),
     },
     {
-      test: ({ path })=> createFilter('**/src/assets/**/index.js')(path),
+      test: ({ path }) => createFilter('**/src/assets/**/index.js')(path),
+      transform: ({ id }) => filesToIndex({ id: id.replace(/^.*?\/src\//, 'src/') }),
+    },
+    {
+      test: ({ path }) => createFilter('**/src/components/**/index.js')(path),
       transform: ({ id }) => filesToIndex({ id: id.replace(/^.*?\/src\//, 'src/') }),
     },
   ],
   rollupPluginVueOptions: {
-    include: ['**/*.vue', '**/*.md'],
+    include: ['**/*.vue', '**.md'],
   },
 }

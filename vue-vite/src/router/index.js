@@ -7,6 +7,7 @@ export default createRouter({
   history,
   strict: true,
   routes: [
+    { name: '/', component: import('../components/HelloWorld.vue') },
     ...routes,
   ],
 })

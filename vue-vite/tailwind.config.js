@@ -1,5 +1,11 @@
 const baleada = require('@baleada/tailwind-theme')
 
 module.exports = {
-  theme: baleada
+  purge: {
+    content: [
+      'src/components/**/*',
+      'src/tests/**/*',
+    ]
+  },
+  theme: baleada,
 }

@@ -27,7 +27,6 @@ module.exports = ({
       // let vite know this is supposed to be treated as vue file
       ctx.vue = true
 
-      console.log(ctx.body)
       const sfc = sourceTransformMarkdownToVueSfc(markdown.toString())
       
       ctx.body = sfc
