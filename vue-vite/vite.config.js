@@ -2,7 +2,7 @@ const { createFilter } = require('@rollup/pluginutils'),
       sourceTransform = require('@baleada/rollup-plugin-source-transform')
 
 const getFilesToRoutesTransform = require('@baleada/source-transform-files-to-routes'),
-      filesToRoutes = getFilesToRoutesTransform('vue', { exclude: 'routes.js' })
+      filesToRoutes = getFilesToRoutesTransform('vue', { exclude: ['**/.**', '**/*routes.js'] })
       
 const getFilesToIndexTransform = require('@baleada/source-transform-files-to-index'),      
       filesToIndex = getFilesToIndexTransform()
@@ -18,13 +18,12 @@ module.exports = {
     getServeAsVue({ toVue: sourceTransformMarkdownToVueSfc, include: '**/*.md' }),
   ],
   rollupInputOptions: {
-    cache: false,
     plugins: [
       sourceTransform({
-        include: '**.md',
+        include: '**/*.md',
         transform: ({ source }) => {
           console.log('transforming markdown')
-          markdownToVueSfc({ source })
+          return sourceTransformMarkdownToVueSfc({ source })
         },
       })
     ]
@@ -44,6 +43,6 @@ module.exports = {
     },
   ],
   rollupPluginVueOptions: {
-    include: ['**/*.vue', '**.md'],
+    include: ['**/*.vue', '**/*.md'],
   },
 }
