@@ -1,9 +1,10 @@
 <template>
-  <span>{{ message }}</span>
+  <div>this is nested</div>
+  <div>{{ message }}</div>
 </template>
 
 <script>
-import { useThing } from '../assets/js'
+import { useThing } from '../../assets/js'
 
 export default {
   setup () {

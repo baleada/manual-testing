@@ -10,7 +10,7 @@ export default createRouter({
   routes: [
     { path: '/', name: 'Home', component: HelloWorld },
     ...routes,
-    { path: '/:data(.*)', component: HelloWorld, name: 'NotFound' },
+    // { path: '/:data(.*)', component: HelloWorld, name: 'NotFound' },
   ],
 })
 
