@@ -1,10 +1,9 @@
-const virtual = require('@rollup/plugin-virtual')
-
-const { createFilter } = require('@rollup/pluginutils'),
-      sourceTransform = require('@baleada/rollup-plugin-source-transform')
+const sourceTransform = require('@baleada/rollup-plugin-source-transform'),
+      virtual = require('@baleada/rollup-plugin-virtual')
 
 const getFilesToRoutesTransform = require('@baleada/source-transform-files-to-routes'),
-      filesToRoutes = getFilesToRoutesTransform('vue', { exclude: ['**/.**', '**/*routes.js'] })
+      filesToRoutes = getFilesToRoutesTransform('vue', { exclude: ['**/.**', '**/*routes.js'] }),
+      relativeFromRootFilesToRoutes = getFilesToRoutesTransform('vue', { exclude: ['**/.**', '**/*routes.js'], importType: 'relativeFromRoot' })
       
 const getFilesToIndexTransform = require('@baleada/source-transform-files-to-index'),      
       filesToIndex = getFilesToIndexTransform(),
@@ -13,6 +12,7 @@ const getFilesToIndexTransform = require('@baleada/source-transform-files-to-ind
 const getServeAsVue = require('@baleada/vite-serve-as-vue'),
       sourceTransformMarkdownToVueSfc = require('./util/sourceTransformMarkdownToVueSfc')
 
+const getServeVirtual = require('@baleada/vite-serve-virtual')
 
 const { resolve } = require('path'),
       basePath = resolve('')
@@ -27,20 +27,28 @@ module.exports = {
       include: '**/*.md'
     }),
     getServeVirtual({
-      path: '/src/assets/js',
-      source: relativeFromRootFilesToIndex({ id: `${basePath}/src/assets/js` }),
-      type: 'js'
+      test: ({ id }) => id.endsWith('/src/assets/js'),
+      transform: ({ id }) => ({
+        type: 'js',
+        source: relativeFromRootFilesToIndex({ id }),
+      })
     }),
     getServeVirtual({
-      path: '/src/components',
-      source: relativeFromRootFilesToIndex({ id: `${basePath}/src/components` }),
-      type: 'js'
+      test: ({ id }) => id.endsWith('/src/components'),
+      transform: ({ id }) => ({
+        type: 'js',
+        source: relativeFromRootFilesToIndex({ id }),
+      })
     }),
     getServeVirtual({
-      path: '/src/tests/routes',
-      source: filesToRoutes({ id: `${basePath}/src/tests/routes.js` }),
-      type: 'js',
-    })
+      test: ({ id }) => id.endsWith('/src/tests/routes'),
+      transform: ({ id }) => {
+        return {
+          type: 'js',
+          source: filesToRoutes({ id }),
+        }
+      }
+    }),
   ],
   rollupInputOptions: {
     plugins: [
@@ -49,8 +57,17 @@ module.exports = {
         transform: ({ source }) => sourceTransformMarkdownToVueSfc({ source }),
       }),
       virtual({
-        '../assets/js': filesToIndex({ id: `${basePath}/src/assets/js/index.js` })
-      })
+        include: '**/assets/js',
+        transform: ({ id }) => filesToIndex({ id }),
+      }),
+      virtual({
+        include: '**/components',
+        transform: ({ id }) => filesToIndex({ id }),
+      }),
+      virtual({
+        include: '**/tests/routes',
+        transform: ({ id }) => relativeFromRootFilesToRoutes({ id }),
+      }),
     ]
   },
   rollupPluginVueOptions: {

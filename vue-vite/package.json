@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "link": "npm link @baleada/animateable-utils @baleada/listenable-gestures @baleada/logic @baleada/markdown-it-prose-container @baleada/markdown-it-spa-links @baleada/prepare @baleada/tailwind-linear-numeric @baleada/tailwind-theme @baleada/tailwind-theme-utils @baleada/vue-composition @baleada/vue-features @baleada/vue-eva-icons @baleada/vue-heroicons @baleada/vue-octicons @baleada/vue-simple-icons @baleada/vue-teenyicons @baleada/vue-interface @baleada/vue-prose @baleada/source-transform-markdown-to-prose @baleada/source-transform-files-to-routes @baleada/source-transform-files-to-index @baleada/rollup-plugin-source-transform @baleada/vite-serve-as-vue"
+    "link": "npm link @baleada/animateable-utils @baleada/listenable-gestures @baleada/logic @baleada/markdown-it-prose-container @baleada/markdown-it-spa-links @baleada/prepare @baleada/tailwind-linear-numeric @baleada/tailwind-theme @baleada/tailwind-theme-utils @baleada/vue-composition @baleada/vue-features @baleada/vue-eva-icons @baleada/vue-heroicons @baleada/vue-octicons @baleada/vue-simple-icons @baleada/vue-teenyicons @baleada/vue-interface @baleada/vue-prose @baleada/source-transform-markdown-to-prose @baleada/source-transform-files-to-routes @baleada/source-transform-files-to-index @baleada/rollup-plugin-source-transform @baleada/rollup-plugin-virtual @baleada/vite-serve-as-vue @baleada/vite-serve-virtual"
   },
   "dependencies": {
     "bezier-easing": "^2.1.0",
@@ -17,7 +17,6 @@
     "vue-router": "^4.0.0-beta.2"
   },
   "devDependencies": {
-    "@rollup/plugin-virtual": "^2.0.3",
     "@rollup/pluginutils": "^3.1.0",
     "@vue/compiler-sfc": "^3.0.0-rc.4",
     "rollup-plugin-vue": "^6.0.0-beta.9",
