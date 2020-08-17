@@ -45,7 +45,7 @@ module.exports = {
       transform: ({ id }) => {
         return {
           type: 'js',
-          source: filesToRoutes({ id }),
+          source: relativeFromRootFilesToRoutes({ id }),
         }
       }
     }),
@@ -66,7 +66,7 @@ module.exports = {
       }),
       virtual({
         include: '**/tests/routes',
-        transform: ({ id }) => relativeFromRootFilesToRoutes({ id }),
+        transform: ({ id }) => filesToRoutes({ id }),
       }),
     ]
   },
