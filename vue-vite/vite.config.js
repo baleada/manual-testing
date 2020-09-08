@@ -10,9 +10,12 @@ const getFilesToIndexTransform = require('@baleada/source-transform-files-to-ind
       relativeFromRootFilesToIndex = getFilesToIndexTransform({ importType: 'relativeFromRoot' })
 
 const getServeAsVue = require('@baleada/vite-serve-as-vue'),
-      sourceTransformMarkdownToVueSfc = require('./util/sourceTransformMarkdownToVueSfc')
+      sourceTransformMarkdownToVueSfc = require('./util/sourceTransformMarkdownToVueSfc'),
+      sourceTransformProseToVueSfc = require('./util/sourceTransformProseToVueSfc')
 
 const getServeVirtual = require('@baleada/vite-serve-virtual')
+
+const aliasBabelRuntimeHelpers = require('./util/aliasBabelRuntimeHelpers')
 
 const { resolve } = require('path'),
       basePath = resolve('')
@@ -20,6 +23,7 @@ const { resolve } = require('path'),
 module.exports = {
   alias: {
     'fast-fuzzy': '/node_modules/fast-fuzzy/lib/fuzzy.mjs', // Workaround until @rollup/plugin-node-resolve supports conditional exports
+    ...aliasBabelRuntimeHelpers(),
   },
   configureServer: [
     getServeAsVue({
@@ -27,7 +31,7 @@ module.exports = {
       include: '**/*.md'
     }),
     getServeAsVue({
-      toVue: sourceTransformMarkdownToProse,
+      toVue: sourceTransformProseToVueSfc,
       include: '**/*.prose',
     }),
     getServeVirtual({
@@ -62,7 +66,7 @@ module.exports = {
       }),
       sourceTransform({
         include: '**/*.prose',
-        transform: ({ source }) => sourceTransformMarkdownToProse({ source }),
+        transform: ({ source }) => sourceTransformProseToVueSfc({ source }),
       }),
       virtual({
         include: '**/assets/js',

@@ -7,14 +7,9 @@ import { ref, onMounted, getCurrentInstance } from 'vue'
 import * as vue from 'vue'
 
 export default {
-  setup () {
+  setup (props, context) {
     const baleada = ref(null)
-    console.log(getCurrentInstance())
     console.log(vue)
-
-    onMounted(() => {
-      console.log(baleada)
-    })
 
     return {
       baleada,

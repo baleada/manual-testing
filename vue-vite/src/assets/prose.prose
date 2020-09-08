@@ -1,0 +1,77 @@
+:::
+# Prose tests
+:::
+
+
+:::
+## Aside
+:::
+
+::: type="info"
+This is an info aside
+::: 
+
+
+:::
+## Blockquote
+:::
+
+:::
+> Quote me
+:::
+
+
+:::
+## Codeblock
+:::
+
+::: hasLineNumbers hasLang
+```js
+console.log('Baleada')
+```
+:::
+
+
+:::
+## Details
+:::
+
+::: summary="I have details"
+They're interesting
+:::
+
+
+:::
+## Heading
+:::
+
+:::
+### heading 3 with `code`
+:::
+
+
+:::
+## List
+:::
+
+:::
+1. One
+2. Two
+3. Three
+:::
+
+
+:::
+## Section
+:::
+
+::: classes="bg-blue-10"
+Section
+:::
+
+
+
+
+
+
+
