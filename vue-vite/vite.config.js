@@ -26,6 +26,10 @@ module.exports = {
       toVue: sourceTransformMarkdownToVueSfc,
       include: '**/*.md'
     }),
+    getServeAsVue({
+      toVue: sourceTransformMarkdownToProse,
+      include: '**/*.prose',
+    }),
     getServeVirtual({
       test: ({ id }) => id.endsWith('/src/assets/js'),
       transform: ({ id }) => ({
@@ -55,6 +59,10 @@ module.exports = {
       sourceTransform({
         include: '**/*.md',
         transform: ({ source }) => sourceTransformMarkdownToVueSfc({ source }),
+      }),
+      sourceTransform({
+        include: '**/*.prose',
+        transform: ({ source }) => sourceTransformMarkdownToProse({ source }),
       }),
       virtual({
         include: '**/assets/js',
