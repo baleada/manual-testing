@@ -15,15 +15,12 @@ const getServeAsVue = require('@baleada/vite-serve-as-vue'),
 
 const getServeVirtual = require('@baleada/vite-serve-virtual')
 
-const aliasBabelRuntimeHelpers = require('./util/aliasBabelRuntimeHelpers')
-
-const { resolve } = require('path'),
-      basePath = resolve('')
+const aliasBabelRuntime = require('@baleada/vite-alias-babel-runtime')
 
 module.exports = {
   alias: {
     'fast-fuzzy': '/node_modules/fast-fuzzy/lib/fuzzy.mjs', // Workaround until @rollup/plugin-node-resolve supports conditional exports
-    ...aliasBabelRuntimeHelpers(),
+    ...aliasBabelRuntime(),
   },
   configureServer: [
     getServeAsVue({

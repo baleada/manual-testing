@@ -8,6 +8,15 @@
     </li>
   </ul>
 
+  <ul>
+    <li
+      v-for="{ tag, type, src } in context.article.media"
+      :key="src"
+    >
+      <component :is="tag" :src="src" />
+    </li>
+  </ul>
+
   <main class="mt-10">
     <ProseArticle class="px-10">
       <component :is="prose" />
@@ -48,6 +57,14 @@ export default {
               classes: '',
               readerCanCopy: false
             },
+            list: {
+              readerCanSearch: true,
+              readerCanChangeSearchCaseSensitivity: true,
+            },
+            table: {
+              readerCanSearch: true,
+              readerCanChangeSearchCaseSensitivity: true,
+            }
           }
 
     const interfaceProps = {}
@@ -79,5 +96,26 @@ svg {
 
 .baleada-prose-heading {
   @apply mt-12 mb-6 text-7;
+}
+
+[role="grid"] {
+  display: table;
+}
+
+[role="rowgroup"] {
+  display: table-row-group;
+}
+
+[role="rowgroup"]:first-child {
+  display: table-header-group;
+}
+
+[role="row"] {
+  display: table-row;
+}
+
+[role="columnheader"],
+[role="cell"] {
+  display: table-cell;
 }
 </style>

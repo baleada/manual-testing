@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "link": "npm link @baleada/animateable-utils @baleada/listenable-gestures @baleada/logic @baleada/markdown-it-prose-container @baleada/markdown-it-spa-links @baleada/prepare @baleada/tailwind-linear-numeric @baleada/tailwind-theme @baleada/tailwind-theme-utils @baleada/vue-composition @baleada/vue-features @baleada/vue-eva-icons @baleada/vue-heroicons @baleada/vue-radix-icons @baleada/vue-octicons @baleada/vue-simple-icons @baleada/vue-teenyicons @baleada/vue-interface @baleada/vue-prose @baleada/source-transform-markdown-to-prose @baleada/source-transform-files-to-routes @baleada/source-transform-files-to-index @baleada/rollup-plugin-source-transform @baleada/rollup-plugin-virtual @baleada/vite-serve-as-vue @baleada/vite-serve-virtual"
+    "link": "npm link @baleada/animateable-utils @baleada/listenable-gestures @baleada/logic @baleada/markdown-it-prose-container @baleada/markdown-it-spa-links @baleada/prepare @baleada/tailwind-linear-numeric @baleada/tailwind-theme @baleada/tailwind-theme-utils @baleada/vue-composition @baleada/vue-features @baleada/vue-eva-icons @baleada/vue-heroicons @baleada/vue-radix-icons @baleada/vue-octicons @baleada/vue-simple-icons @baleada/vue-teenyicons @baleada/vue-interface @baleada/vue-prose @baleada/source-transform-markdown-to-prose @baleada/source-transform-files-to-routes @baleada/source-transform-files-to-index @baleada/rollup-plugin-source-transform @baleada/rollup-plugin-virtual @baleada/vite-serve-as-vue @baleada/vite-serve-virtual @baleada/vite-alias-babel-runtime"
   },
   "dependencies": {
     "@babel/runtime": "^7.11.2",

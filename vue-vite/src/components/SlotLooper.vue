@@ -10,36 +10,50 @@
 
 <script>
 import { ref } from 'vue'
+import { useBindings } from '@baleada/vue-features/util'
 
 export default {
   setup () {
     const refs = ref([]),
+          el0 = ref(null),
+          el1 = ref(null),
+          el2 = ref(null),
           things = ref([
             {
               key: 0,
-              ref: el => (refs.value = [...refs.value, el]),
+              ref: el => { console.log(el); (el0.value = el) },
               data: {
                 isTrue: true,
               }
             },
             {
               key: 1,
-              ref: el => (refs.value = [...refs.value, el]),
+              ref: el => { console.log(el); (el1.value = el) },
               data: {
                 isTrue: false,
               }
             },
             {
               key: 2,
-              ref: el => (refs.value = [...refs.value, el]),
+              ref: el => { console.log(el); (el2.value = el) },
               data: {
                 isTrue: false,
               }
             }
           ])
 
+    useBindings({
+      target: el0,
+      bindings: {
+        role: 'example'
+      }
+    })
+
     return {
-      things
+      things,
+      el0,
+      el1,
+      el2,
     }
   }
 }

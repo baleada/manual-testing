@@ -55,9 +55,34 @@ They're interesting
 :::
 
 :::
-1. One
-2. Two
-3. Three
+1. Baleada
+2. Toolkit
+3. Vue
+4. Prose
+:::
+
+
+:::
+## Media
+:::
+
+
+::: type=image src="https://res.cloudinary.com/duib7ae0a/image/upload/q_auto,f_auto,w_1500/alex-vipond/panama-cortado.jpg"
+:::
+
+::: type=embed src="https://www.youtube.com/embed/KpelkMBAD2o"
+:::
+
+:::
+## Table
+:::
+
+::: ariaLabel="example table"
+| Package | Type |
+| --- | --- |
+| Logic | UI Logic |
+| Interface | Components |
+| Theme | Configuration utility |
 :::
 
 
