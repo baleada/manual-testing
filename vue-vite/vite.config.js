@@ -80,7 +80,7 @@ module.exports = {
     ]
   },
   rollupPluginVueOptions: {
-    include: ['**/*.vue', '**/*.md'],
+    include: ['**/*.vue', '**/*.md', '**/*.prose'],
   },
 }
 

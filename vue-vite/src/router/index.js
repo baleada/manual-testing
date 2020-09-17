@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from '../tests/routes'
-import { HelloWorld } from '../components'
+import { HelloWorld, SpecialRouteLayout } from '../components'
 
 const history = createWebHistory()
+
+console.log(routes)
 
 export default createRouter({
   history,

@@ -10,10 +10,12 @@
 
   <ul>
     <li
-      v-for="{ tag, type, src } in context.article.media"
+      v-for="{ tag, src, ariaLabel } in context.article.media"
+      class="h-13"
       :key="src"
     >
-      <component :is="tag" :src="src" />
+      <component :is="tag" class="max-h-full" :src="src" />
+      <p>{{ ariaLabel }}</p>
     </li>
   </ul>
 
@@ -30,7 +32,7 @@
 import { ref, computed, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { createContext } from '@baleada/vue-prose'
-import prose from '../assets/prose.prose'
+import prose from '../assets/test.prose'
 
 export default {
   setup () {
@@ -50,20 +52,23 @@ export default {
             },
             codeblock: {
               readerCanCopy: true,
-              hasLineNumbers: true,
-              hasLang: true,
+              // hasLineNumbers: true,
+              // hasLang: true,
             },
             heading: {
               classes: '',
               readerCanCopy: false
             },
             list: {
-              readerCanSearch: true,
-              readerCanChangeSearchCaseSensitivity: true,
+              // readerCanSearch: true,
+              // readerCanChangeSearchCaseSensitivity: true,
             },
             table: {
-              readerCanSearch: true,
-              readerCanChangeSearchCaseSensitivity: true,
+              // readerCanSearch: true,
+              // readerCanChangeSearchCaseSensitivity: true,
+            },
+            media: {
+              classes: 'h-13',
             }
           }
 
@@ -96,6 +101,14 @@ svg {
 
 .baleada-prose-heading {
   @apply mt-12 mb-6 text-7;
+}
+
+.baleada-prose-media .baleada-prose-contents {
+  @apply h-full;
+}
+
+.baleada-prose-media .baleada-prose-contents * {
+  @apply max-h-full;
 }
 
 [role="grid"] {

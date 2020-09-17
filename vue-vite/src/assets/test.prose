@@ -16,7 +16,7 @@ This is an info aside
 ## Blockquote
 :::
 
-:::
+::: readerCanTweet=false
 > Quote me
 :::
 
@@ -54,7 +54,7 @@ They're interesting
 ## List
 :::
 
-:::
+::: readerCanSearch
 1. Baleada
 2. Toolkit
 3. Vue
@@ -67,10 +67,10 @@ They're interesting
 :::
 
 
-::: type=image src="https://res.cloudinary.com/duib7ae0a/image/upload/q_auto,f_auto,w_1500/alex-vipond/panama-cortado.jpg"
+::: ariaLabel="Panama cortado" type=image src="https://res.cloudinary.com/duib7ae0a/image/upload/q_auto,f_auto,w_1500/alex-vipond/panama-cortado.jpg"
 :::
 
-::: type=embed src="https://www.youtube.com/embed/KpelkMBAD2o"
+::: type=embed ariaLabel="He's kind of like a dog" src="https://www.youtube.com/embed/KpelkMBAD2o"
 :::
 
 :::
